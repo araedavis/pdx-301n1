@@ -49,6 +49,19 @@ Article.fetchAll = function() {
     // we can load it with the .loadAll function above,
     // and then render the index page (using the proper method on the articleView object).
 
+    //find the Etag
+    // $.ajax({
+    //   type: 'HEAD',
+    //   url: 'data/hackerIpsum.json',
+    //   ifModified: true,
+    //   success: function(data, message, xhr){
+    //     console.log(xhr);
+    //     //ETag:W/"146363-1524c9842a8"
+    //     //ETag:W/"146363-1524c9df3b0"
+    //
+    //   }
+    // });
+
     Article.loadAll(//DONE: What do we pass in here to the .loadAll function?
       JSON.parse(localStorage.rawData)
     );
@@ -62,11 +75,14 @@ Article.fetchAll = function() {
     // and then render the index page.
     console.log('ajax!');
 
-    $.get('data/hackerIpsum.json', function(data){
-      Article.loadAll(data);
-      var dataString = JSON.stringify(data);
-      localStorage.setItem("rawData", dataString);
-      articleView.initIndexPage();
+    $.ajax({
+      url: 'data/hackerIpsum.json',
+      success: function(XMLHttpRequest, data){
+          Article.loadAll(data);
+          var dataString = JSON.stringify(data);
+          localStorage.setItem("rawData", dataString);
+          articleView.initIndexPage();
+      },
 
     });
   }
