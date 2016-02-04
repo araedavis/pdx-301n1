@@ -4,7 +4,7 @@
   Article.createTable();
 
   articlesController.index = function() {
-    Article.fetchAll(articleView.initIndexPage);
+    //Article.fetchAll(articleView.initIndexPage);
 
     $('#articles').show().siblings().hide();
   };
