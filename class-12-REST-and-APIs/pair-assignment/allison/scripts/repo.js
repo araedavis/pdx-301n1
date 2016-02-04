@@ -8,10 +8,10 @@
     $.ajax({
       url: 'https://api.github.com/users/araedavis/repos',
       type: 'GET',
-      headers: {},
+      headers: { 'Authorization': 'token ' + githubToken }, //TODO still need to incorporate git token (which is in .gitignore)
       success: function(data){
+        
         repos.all = data;
-
         callback();
       }
     })
