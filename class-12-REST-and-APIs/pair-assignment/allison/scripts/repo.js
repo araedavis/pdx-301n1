@@ -10,10 +10,11 @@
       type: 'GET',
       headers: {},
       success: function(data){
-        console.log(data);
+        repos.all = data;
+
+        callback();
       }
     })
-    callback();
 
   };
 
